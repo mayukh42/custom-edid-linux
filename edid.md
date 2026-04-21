@@ -397,7 +397,7 @@ This is also a way to check the binary was saved properly with valid checksum, s
 ```
 $ sudo cp ~/Downloads/edid-e2742/mod/edid.bin /lib/firmware/edid/edid.bin
 ```
-Usually, ```/lib``` is a symlink to ```/usr/lib```, so if that is not there, simply use ```/usr/lib/firmware/edid/edid.bin``` as destination. If if the edid directory does not exist, create it first:
+Usually, ```/lib``` is a symlink to ```/usr/lib```, so if that is not there, simply use ```/usr/lib/firmware/edid/edid.bin``` as destination. If the edid directory does not exist, create it first:
 ```
 $ sudo mkdir -p /lib/firmware/edid/
 ```
@@ -406,9 +406,9 @@ $ sudo mkdir -p /lib/firmware/edid/
 
 Only if this step succeeds we can make the change permanent in step 7.
 
-Restart the machine and at the boot menu, edit the parameters. If using GRUB, press 'e' on the menu after selecting the boot entry. If using Refind, press F2 or Insert. The boot menu also shows which key to press in order to edit the entries, so follow that for other bootloaders.
+Restart the machine and at the boot menu, edit the parameters. If using **GRUB**, press 'e' on the menu after selecting the boot entry. If using **refind**, press F2 or Insert. The boot menu also shows which key to press in order to edit the entries, so follow that.
 
-In the CMDLINE_OPTIONS or options, that look like
+In the options that look like
 ```
 quiet nowatchdog splash rw root=UUID=3234088f-8f3c-496e-a669-8b255d311421 ...,
 ```
