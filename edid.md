@@ -430,11 +430,11 @@ This stage has 2 steps. The first is common to all bootloaders, second is specif
 
 #### a. Add kernel parameter options:
 
-If using GRUB, change GRUB_CMDLINE_OPTIONS in ```/etc/default/grub``` to
+If using **GRUB**, change GRUB_CMDLINE_OPTIONS in ```/etc/default/grub``` to
 ```
 quiet nowatchdog splash rw root=UUID=3234088f-8f3c-496e-a669-8b255d311421 drm.edid_firmware=HDMI-A-1:edid/edid.bin video=HDMI-A-1:e ...
 ```
-If using **refind**, change options in ```/boot/EFI/refind_linux.conf``` to look like this:
+If using **refind**, change options in ```/boot/refind_linux.conf``` to look like this:
 ```
 sudo cat /boot/refind_linux.conf
 "Boot with standard options"    "quiet nowatchdog splash rw root=UUID=3234088f-8f3c-496e-a669-8b255d311421 drm.edid_firmware=HDMI-A-1:edid/edid.bin video=HDMI-A-1:e"
@@ -443,11 +443,11 @@ sudo cat /boot/refind_linux.conf
 ```
 We have changed only the first line, we can change others too, or we can leave them as is, in case we want to revert they can serve as reference.
 
-**systemd-boot** has a similar config file at ```/boot/loader/entries```. Just use the conf file that has the right kernel loader.
+**systemd-boot** has a similar config file at ```/boot/loader/entries/arch.conf``` or similar. Just use the conf file that has the right kernel loader.
 
 #### b. Re-create bootloader.
 
-If using GRUB, run
+If using **GRUB**, run
 ```
 $ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
@@ -457,9 +457,9 @@ This way we can use the modified edid to spoof our monitor and get AMD or Intel 
 
 ### 8. Revert changes for other supported VDUs
 
-If connecting the PC to a modern TV or monitor that does not have limited range issue with AMD or Intel, simply remove the ```video=HDMI-A-1:e``` part from kernel boot options. 
+If connecting the PC to a modern TV or monitor that does not have any color issue with AMD or Intel, simply remove the ```video=HDMI-A-1:e``` part from kernel boot options. 
 
-Again, first do it from the boot menu without persisting it to the bootloader conf files, then once it works, make the change permanent if required, similar to step 7.
+Again, first do it from the boot menu without persisting it to the bootloader conf files, then once it works, make the change permanent if required, similar to **step 7**.
 
 When we change the boot parameters on the fly without changing them in the bootloader, we can compare the options used to boot with the options on disk thus:
 
@@ -478,4 +478,4 @@ sudo cat /boot/refind_linux.conf
 "Boot with minimal options"   "ro root=UUID=3234088f-8f3c-496e-a669-8b255d311421"
 ```
 
-The above two examples are after we did step 6 but not yet step 7, etc.
+The above two examples are after we did **step 6** but not yet **step 7**, etc.
