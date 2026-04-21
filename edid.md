@@ -9,17 +9,17 @@ EDID is the visual display unit (VDU) spec file. It contains all features of the
 
 ### The problem
 
-**AMD** and **Intel** use full range of colors for every monitor or TV, whether new or old, when using HDMI or DisplayPort and if the EDID mentions YCbCr support. Many old monitors don't support the full range, in which case their colors or brightness/ gamma under AMD/ Intel GPUs (both dedicated or integrated) are either washed out (fuzzy upper limit) or blackened (fuzzy lower limit). For example, in 8 bit color, the range 0-255 of colors are not available; only a limited range like 16-235, making the colors appear inaccurate.
+**AMD** and **Intel** use full range of colors for every monitor or TV, whether new or old, when using HDMI or DisplayPort and if the EDID mentions YCbCr support. Many old monitors don't support the full range, in which case their colors or brightness/ gamma under AMD/ Intel GPUs (both dedicated or integrated) are either washed out (fuzzy upper limit) or blackened (fuzzy lower limit). For example, in 8 bit color, the full range **0-255** of colors are not available; only a limited range like **16-235**, making the colors appear inaccurate.
 
-This is not a problem for NVIDIA GPUs; they are smart enough to determine what the monitor is capable of, and set the range accordingly. So the same monitor, when connected to one, will show proper colors. 
+This is not a problem for **NVIDIA** GPUs; they are smart enough to determine what the monitor is capable of, and set the range accordingly. So the same monitor, when connected to one, will show proper colors. 
 
-This is not a problem if VGA or DVI ports are used, but most modern GPUs don't have these legacy ports. Also, modern TVs almost always use HDMI as the display interface even for PC mode.
+This is not a problem if **VGA** or **DVI** ports are used, but most modern GPUs don't have these legacy ports. Also, modern TVs almost always use HDMI as the display interface even for PC mode. So if someone doesn't want to go through the trouble of following this guide, they can also use a **HDMItoVGA** or **HDMItoDVI** adapter (similarly for DisplayPort) to circumvent the issue.
 
-This is also not a problem on Windows, since both AMD Adrenalin or Intel Graphics Control Panel can set the range through their UI if the OS handshake fails to recognize the right range.
+This is also not a problem on **Windows**, since both **AMD Adrenalin** or **Intel Graphics Control Panel** can set the range through their UI if the OS handshake fails to recognize the right range. On the other side, **NVIDIA Control Panel** can be used to change color range, though it is not often required if they do it right by default.
 
 ### The workaround - spoof EDID 
 
-The EDID file is created by initial handshake, when the computer starts and kernel connects to the monitor. It can also be created when another monitor is hot-swapped. 
+The EDID file is created by initial handshake, when the computer starts and kernel sees the monitor. It can also be created when another monitor is hot-swapped. 
 
 We want to spoof this EDID to the kernel so that instead of default values it takes the modified version. Then the VDU will be recognized for what it is and the colors will show up proper.
 
@@ -27,9 +27,9 @@ We want to spoof this EDID to the kernel so that instead of default values it ta
 
 The below is a very specific, custom EDID workaround for monitors who have YCbCr support but AMD or Intel GPUs are not able to use it properly, resulting in either washed out colors or dark colors (Black Crush), i.e. either the white point is fuzzy or the black point. 
 
-The guide assumes **Arch Linux** or its variants like **EndeavourOS** or **CachyOS**. Similar steps will also work in other Linux distributions like Mint or Ubuntu, but the last steps might differ based on the bootloader.
+The guide assumes **Arch Linux** or its variants like **EndeavourOS** or **CachyOS**. Similar steps will also work in other Linux distributions like Mint or Ubuntu, but the last steps might differ.
 
-If at step 6 you don't see the results, then there is some other issue with your setup, and cannot be fixed by this guide.
+If at **step 6** you don't see the results, then there is some other issue with your setup, and cannot be fixed by this guide. You can stop there and it won't make any permanent change to your system at that point.
 
 The below guide can also be referred for using a custom EDID for any other purpose. For example, the GPU may not recognize all refresh rate or resolution modes, which can be fixed by a custom EDID. However, you should use only the EDID of your device as the source.
 
