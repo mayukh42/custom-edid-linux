@@ -87,7 +87,7 @@ Output: 1 HDMI-A-1 18f4892d-ecc8-41be-83b3-61cf79c5e092
         Automatic brightness: unsupported
 ```
 
-As we can see in Output line, the device is HDMI-A-1.
+As we can see in Output line, the device is ```HDMI-A-1```.
 
 ### 2. Copy the edid file as .bin into a proper location
 
